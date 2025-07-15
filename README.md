@@ -20,7 +20,7 @@ Campus Cruise is a web-based indoor navigation system designed to guide users wi
 
 1. Clone the repository
 2. Open the index.html file in your browser
-3. 
+
 ## How It Works
 
 - Each floor layout is drawn using the HTML5 Canvas
