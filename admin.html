@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<main>
+    <section>
+        <h1>Admin Login</h1>
+        <div id="form">
+            <input id="adminUsername" type="text" placeholder="Username"><br>
+            <input id="adminPassword" type="password" placeholder="Password"><br>
+            <button id="loginButton">Login</button>
+            <div id="message" style="color: red; margin-top: 10px;"></div>
+        </div>
+    </section>
+</main>
+
+<script>
+    document.getElementById("loginButton").addEventListener("click", function() {
+        const username = document.getElementById("adminUsername").value.trim();
+        const password = document.getElementById("adminPassword").value.trim();
+        const messageElement = document.getElementById("message");
+
+        // Clear previous message
+        messageElement.innerText = '';
+
+        if (username === "admin" && password === "admin") {
+            // Load registered users using the Android interface
+            if (typeof CampusCruiseInterface !== 'undefined') {
+                const users = CampusCruiseInterface.getAllUsers();
+                window.location.href = "userlist.html?users=" + encodeURIComponent(users);
+            } else {
+                messageElement.innerText = "Error: Android interface not available.";
+            }
+        } else {
+            messageElement.innerText = "Invalid admin credentials.";
+        }
+    });
+</script>
+</body>
+</html>

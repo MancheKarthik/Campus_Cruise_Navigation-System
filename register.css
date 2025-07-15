@@ -1,0 +1,190 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 80%;
+    background-color:#222831;
+
+
+}
+
+main{
+    height: 100%;
+    width: 80%;
+
+}
+
+
+#form{
+    /* border: 1px solid black; */
+    height: 350px;
+    width: 380px;
+    position: relative;
+    top: 80px;
+    left: 580px;
+    background-color: white;
+    padding-left: 30px;
+    padding-top: 50px;
+    border-radius: 15px;
+
+
+}
+
+.poppins{
+    font-family: "Poppins";
+    color:#FFCB00;
+    font-size: 24px;
+    position: relative;
+    top:50px;
+    left: 580px;
+}
+
+.poppins span{
+    color: #a41d31;
+}
+
+#pce_logo{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    left: 750px;
+}
+
+.para{
+    font-family: "Poppins";
+    position: relative;
+    top: 60px;
+    left: 580px;
+    font-size: small;
+    color:white;
+}
+
+.main_input{
+    height: 60px;
+    width: 320px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.input{
+    font-family: "Poppins";
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+     background-color:#F0F0E1;
+    /* margin-bottom: 20px; */
+    padding-left: 30px;
+    border: none;
+    outline: none;
+
+}
+
+.register{
+    font-family: "Poppins";
+    height: 40px;
+    width: 90px;
+    background-color: #FFCB00;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    margin-left: 75px;
+    margin-top: 30px;
+}
+
+.login:hover{
+    background-color: #a41d31;
+    color: white;
+    cursor: pointer;
+}
+
+.ri-user-fill{
+    font-size: 24px;
+    /* border: 1px solid black; */
+
+}
+
+.key_image{
+    font-size: 24px;
+    color:black;
+}
+
+.icons{
+    height: 50px;
+    width: 200px;
+    position: relative;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    margin-left: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-evenly;
+    text-shadow: 2px 2px 2px grey;
+}
+
+.back{
+
+height:50px;
+width:50px;
+position:absolute;
+left:350px;
+top:100px;
+
+}
+
+@media (min-width:320px) and (max-width:600px) {
+
+    #form{
+         height: 350px;
+         width: 300px;
+         background-color:#F0F0E1;
+         position: absolute;
+         top: 320px;
+         left: 70px;
+    }
+
+    .poppins{
+    position:relative;
+    top:180px;
+    left:80px;
+    font-size: 28px;
+
+    }
+
+    .para{
+    position:relative;
+    top:180px;
+    left:80px;
+    font-size:small;
+    }
+
+    .main_input{
+    width:250px;
+    }
+
+    .login{
+    margin-left:20px;
+    }
+
+    .bottom_para{
+    color:white;
+    font-size:small;
+    position:absolute;
+    left:80px;
+    bottom:265px;
+
+
+
+    }
+
+
+
+}

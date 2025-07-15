@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, 1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Messages</title>
+    <link rel="stylesheet" href="messages.css"> <!-- Add your CSS file if necessary -->
+</head>
+
+<body>
+<div class="bottom_nav">
+    <nav class="navbar">
+        <a href="home.html"><img class="elements_navbar" src="explore_24dp_666666.png"></a>
+        <a href="libraryMAIN.html"><img class="elements_navbar" src="library_books_24dp_666666.png"></a>
+        <a href="contactusMAIN.html"><img class="elements_navbar" src="email_24dp_black.png"></a>
+        <a href="AboutsusMAIN.html"><img class="elements_navbar" src="account_balance_24dp_666666.png"></a>
+    </nav>
+</div>
+
+
+<!-- <nav class="top_nav"></nav> -->
+
+<section>
+    <h2 style="color:white">Submitted Messages</h2>
+    <div id="messageDetails" style="color:white;margin-bottom:50px;margin-top: 20px;font-size: 20px;"></div> <!-- For displaying submitted messages -->
+
+    <!-- Back Button -->
+    <div style="margin-top: 20px;">
+        <a href="contactusMAIN.html" style="text-decoration: none;  padding:  20px; background-color: #FFCB00; color: black; border-radius: 15px;box-shadow:2px 2px 2px black;border:1px solid black;margin-left:750px;font-size: 20px;">Back</a>
+    </div>
+
+
+</section>
+
+<script>
+    // Retrieve messages from sessionStorage
+    const messages = JSON.parse(sessionStorage.getItem("messages")) || [];
+    let messageDetails = '';
+
+    // Reverse the order of messages for proper display (most recent first)
+    for (let i = messages.length - 1; i >= 0; i--) {
+        messageDetails += `
+            <h3>Message ${messages.length - i}:</h3>
+            <p><strong>Name:</strong> ${messages[i].name}</p>
+            <p><strong>Email:</strong> ${messages[i].email}</p>
+            <p><strong>Stream and Class:</strong> ${messages[i].stream}</p>
+            <p><strong>Phone Number:</strong> ${messages[i].phone}</p>
+            <p><strong>Suggestions:</strong> ${messages[i].suggestions}</p>
+            <hr>
+        `;
+    }
+
+    document.getElementById("messageDetails").innerHTML = messageDetails;
+</script>
+
+
+</body>
+</html>

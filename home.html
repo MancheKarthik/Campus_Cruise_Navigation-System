@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- <nav class="top_nav"> -->
+
+    
+
+
+</nav>
+
+<div class="bottom_nav">
+    <nav class="navbar">
+        <a href="home.html"><img class="elements_navbar" src="explore_24dp_black.png"></a>
+        <a href="libraryMAIN.html"><img class="elements_navbar" src="library_books_24dp_666666.png"></a>
+        <a href="contactusMAIN.html"><img class="elements_navbar" src="email_24dp_666666.png"></a>
+        <a href="AboutsusMAIN.html"><img class="elements_navbar" src="account_balance_24dp_666666.png"></a>
+        <a href="Maps.html"><img class="elements_navbar" src="map_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+        <a href="register.php"><img class="elements_navbar" src="logout_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+    </nav>
+</div>
+
+<section class="section1">
+    <div class="container_one">
+        <div class="image_input">
+            <div class="image">
+                <img style="height:30px;" src="my_location_24dp_000000.png">
+            </div>
+            <input id="from-block" class="input_tag" type="text" placeholder="Where are you?" list="location-options">
+            <datalist id="location-options">
+                
+                <option value="Main gate"></option>
+
+            </datalist>
+        </div>
+        
+        <div class="image_input">
+            <div class="image">
+                <img src="place_24dp.png">
+            </div>
+            <input id="to-block" class="input_tag" type="text" placeholder="Where you want to go" list="locations">
+        </div>
+    </div>
+    <datalist id="locations">
+        <option value="Main gate">
+        <option value="S-001">
+        <option value="S-002">
+        <option value="S-003">
+        <option value="S-004">
+        <option value="S-005">
+        <option value="S-006">
+        <option value="S-007">
+        <option value="S-008">
+        <option value="S-009">
+        <option value="S-010">
+        <option value="S-011">
+        <option value="S-012">
+        <option value="S-013">
+        <option value="R-001">
+        <option value="R-002">
+        <option value="R-003">
+        <option value="R-004">
+        <option value="R-005">
+        <option value="L-001">
+        <option value="L-002">
+        <option value="T-001">
+        <option value="P-002">
+        <option value="J-001">
+        <option value="Workshop">
+        <option value="Court">
+        <option value="Playground">
+        <option value="Staircase">
+        <option value="Parking">
+        <option value="Architecture building">
+        <option value="Reception">
+        <option value="Canteen">
+    </datalist>
+
+    <div class="image-container">
+        <canvas id="layoutCanvas" width="600" height="400"></canvas>
+    </div>
+    <p  class="bottom_para">Copyright © CAMPUS CRUISE | All rights reserved</p>
+   
+
+   <div style="display:flex; justify-content:space-evenly; height:100px; width:300px;">
+    <button style="height:60px;width:120px ;position:relative;left:680px;font-size: 20px;" id="find-path">Find Path</button>
+    <a href="home_first_floor.html" id="next"  >Next floor</a>
+    </div>
+</section>
+
+<script>
+    try {
+        const blockCoordinates = {
+            "Main gate": { x: 15, y: 315 },
+            "Staircase":{x:60,y: 250},
+            "S-001": { x: 50, y: 225 },
+            "S-002": { x: 50, y: 200 },
+            "S-003": { x: 45, y: 170 },
+            "S-004": { x: 45, y: 110 },
+            "S-005": { x: 45, y: 65 },
+            "S-006": { x: 85, y: 60 },
+            "S-007": { x: 85, y: 70 },
+            "S-008": { x: 85, y: 96 },
+            "S-009": { x: 85, y: 115 },
+            "S-010": { x: 85, y: 180 },
+            "S-011": { x: 85, y: 200 },
+            "S-012": { x: 85, y: 215 },
+            "S-013": { x: 85, y: 220 },
+            "R-001": { x: 95, y: 45 },
+            "R-002": { x: 150, y: 45 },
+            "R-003": { x: 200, y: 45 },
+            "R-004": { x: 235, y: 45 },
+            "R-005": { x: 245, y: 45 },
+            "L-001": { x: 300, y: 35 },
+            "L-002": { x: 330, y: 35 },
+            "T-001": { x: 100, y: 250 },
+            "P-002": { x: 320, y: 300 },
+            "J-001": { x: 390, y: 300 },
+            "Workshop": { x: 570, y: 315 },
+            "Court": { x:285, y:350 },
+            "Playground": { x:100, y:350},
+            "Parking": {x:450, y:350},
+            "Architecture building":{x:470,y:150},
+            "Reception":{x:80, y:140},
+            "Canteen": { x: 470, y: 100 },
+        };
+
+        const canvas = document.getElementById('layoutCanvas');
+    const ctx = canvas.getContext('2d');
+    const image = new Image();
+    image.src = 'map_grounf_floor.png';  // Ensure this is a high-res image
+
+
+        let imageLoaded = false;
+
+        image.onload = () => {
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            imageLoaded = true;
+        };
+
+        function findPath() {
+            const fromBlock = document.getElementById('from-block').value;
+            const toBlock = document.getElementById('to-block').value;
+
+            if (!blockCoordinates[fromBlock] || !blockCoordinates[toBlock]) {
+                alert('Please enter valid block names.');
+                return;
+            }
+
+            if (imageLoaded) {
+                drawPathWithWaypoints(fromBlock, toBlock);
+            } else {
+                console.log('Image is still loading. Please wait.');
+            }
+
+            findPathButton.classList.add('active');
+            setTimeout(() => {
+                findPathButton.classList.remove('active');
+            }, 300);
+        }
+
+        const findPathButton = document.getElementById('find-path');
+        findPathButton.addEventListener('click', findPath);
+        findPathButton.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            findPath();
+        });
+
+        function drawPathWithWaypoints(fromBlock, toBlock) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            const start = blockCoordinates[fromBlock];
+            const end = blockCoordinates[toBlock];
+
+            const waypoints = {
+                "Main gate to Canteen": [
+                    start,
+                    { x: 80, y: 305 },
+                    { x: 80, y: 53 },
+                    { x: 250, y:53 },
+                    { x: 300, y: 40 },
+                    { x: 375, y: 40 },
+                    { x: 375, y: 100 },
+                    end
+                ],
+
+                "Main gate to Staircase": [
+                    start,
+                    { x: 60, y: 315 },
+                    
+                   
+                    end
+                ],
+
+
+
+
+
+                "Main gate to Architecture building": [
+                    start,
+                    { x: 80, y: 305 },
+                    { x: 80, y: 53 },
+                    { x: 250, y:53 },
+                    { x: 300, y: 40 },
+                    { x: 375, y: 40 },
+                    { x: 375, y: 150 },
+                    end
+                ],
+                 "Main gate to S-001": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 225 },
+                    end
+                ],
+                "Main gate to S-002": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 200 },
+                    end
+                ],
+                "Main gate to S-003": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 170 },
+                    end
+                ],
+                "Main gate to S-004": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 110 },
+                    end
+                ],
+                "Main gate to S-005": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 65 },
+                    end
+                ],
+                 "Main gate to S-006": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 60 },
+                    end
+                ],
+                "Main gate to S-007": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 70 },
+                    end
+                ],
+                "Main gate to S-008": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 96 },
+                    end
+                ],
+                "Main gate to S-009": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 115 },
+                    end
+                ],
+                "Main gate to S-010": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 180 },
+                    end
+                ],
+                 "Main gate to S-011": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 200 },
+                    end
+                ],
+                 "Main gate to S-012": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 215 },
+                    end
+                ],
+                "Main gate to S-013": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 220 },
+                    end
+                ],
+                "Main gate to R-001": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 52 },
+                    { x: 95, y: 52},
+                    end
+                ],
+                "Main gate to R-002": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 52 },
+                    { x: 150, y: 52},
+                    end
+                ],
+                "Main gate to R-003": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 52 },
+                    { x: 200, y: 52},
+                    end
+                ],
+                "Main gate to R-004": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 52 },
+                    { x: 235, y: 52},
+                    end
+                ],
+                "Main gate to R-005": [
+                    start,
+                    { x: 80, y: 305 },
+                    { x: 80, y: 52 },
+                    { x: 245, y: 52},
+                    end
+                ],
+                "Main gate to L-001": [
+                    start,
+                    { x: 80, y: 315 },
+                    { x: 80, y: 53 },
+                    { x: 250, y:53 },
+                    { x: 300, y: 40 },
+                    end
+                ],
+                 "Main gate to L-002": [
+                    start,
+                    { x: 80, y: 305 },
+                    { x: 80, y: 53 },
+                    { x: 250, y:53 },
+                    { x: 300, y: 40 },
+                    { x: 330, y: 40 },
+                    end
+                ],
+                "Main gate to T-001": [
+                    start,
+                    { x: 100, y: 315 },
+                    end
+                ],
+                "Main gate to P-002": [
+                    start,
+                    { x: 320, y: 315 },
+                    { x: 320, y: 300 },
+
+                    end
+                ],
+                "Main gate to J-001": [
+                    start,
+                    { x: 390, y: 315 },
+                    { x: 390, y: 300 },
+                    
+
+                    end
+                ],
+
+
+
+
+
+                "Main gate to Reception": [
+                    start,
+                    { x: 80, y: 305 },
+                    { x: 80, y: 140 },
+                    end
+                ],
+                "Main gate to Workshop": [
+                    start,
+                    { x: 570, y: 315 },
+                    { x: 30, y: 315 },
+                    end
+                ],
+                 "Main gate to Court": [
+                    start,
+                    { x: 285, y: 315},
+                    end
+                ],
+                "Main gate to Parking": [
+                    start,
+                    { x: 450, y: 315 },
+                    end
+                ],
+                 "Main gate to Playground": [
+                    start,
+                    { x: 100, y: 315 },
+                    end
+                ],
+
+
+                // Add more waypoints here...
+            };
+
+            let selectedPath = waypoints[`${fromBlock} to ${toBlock}`];
+
+            if (!selectedPath) {
+                selectedPath = [start, end];
+            }
+
+            animateMovingDottedLine(selectedPath);
+        }
+
+        function animateMovingDottedLine(path) {
+            let dashOffset = 0;
+            const dashLength = 10; // Length of dashes
+            const dashGap = 5; // Gap between dashes
+            const animationSpeed = 0.3; // Speed of the movement
+
+            function drawDottedLine() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                ctx.setLineDash([dashLength, dashGap]);
+                ctx.lineDashOffset = dashOffset;
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+
+                ctx.moveTo(path[0].x, path[0].y);
+
+                for (let i = 1; i < path.length; i++) {
+                    const curr = path[i];
+                    ctx.lineTo(curr.x, curr.y);
+                }
+
+                ctx.stroke();
+
+                dashOffset -= animationSpeed;
+                requestAnimationFrame(drawDottedLine);
+            }
+
+            drawDottedLine();
+        }
+    } catch (e) {
+        alert("JavaScript error: " + e.message);
+    }
+</script>
+
+<style>
+    button {
+        background-color: #f0f0e1;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left:30px;
+        margin-top:50px;
+    }
+
+    button.active {
+        background-color: yellow;
+    }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 80%;
+   background-color:#222831;
+
+}
+
+main{
+    height: 100%;
+    width: 80%;
+
+}
+
+
+#form{
+    /* border: 1px solid black; */
+    height: 350px;
+    width: 380px;
+    position: relative;
+    top: 80px;
+    left: 800px;
+    background-color: #F0F0E1;
+    padding-left: 30px;
+    padding-top: 50px;
+    border-radius: 15px;
+
+
+}
+
+.poppins{
+    font-family: "Poppins";
+    color:#FFCB00;
+    font-size:55px;
+    position: relative;
+    top:50px;
+    left: 780px;
+}
+
+.poppins span{
+    color: #a41d31;
+}
+
+#pce_logo{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    left: 750px;
+}
+
+.para{
+    font-family: "Poppins";
+
+    position: relative;
+    top: 60px;
+    left: 780px;
+    font-size: 20px;
+    color:white;
+}
+
+.main_input{
+    height: 60px;
+    width: 320px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.input{
+    font-family: "Poppins";
+    height: 50px;
+    width: 250px;
+    background-color:#F0F0E1;
+    border-radius: 10px;
+    /* margin-bottom: 20px; */
+    padding-left: 30px;
+    border: none;
+    outline: none;
+
+}
+
+.login{
+    font-family: "Poppins";
+    font-size: 17px;
+    height: 50px;
+    width: 100px;
+    background-color: #FFCB00;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    margin-left: 115px;
+    margin-top: 30px;
+}
+
+.login:hover{
+    background-color: #a41d31;
+    color: white;
+    cursor: pointer;
+}
+
+.ri-user-fill{
+    font-size: 24px;
+    /* border: 1px solid black; */
+
+}
+
+.key_image{
+    font-size: 24px;
+    color:red;
+}
+
+.icons{
+    height: 50px;
+    width: 200px;
+    position: relative;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    margin-left: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-evenly;
+    text-shadow: 2px 2px 2px grey;
+}
+
+.back{
+
+height:50px;
+width:50px;
+position:absolute;
+left:350px;
+top:100px;
+
+}
+
+.bottom_para{
+
+    font-size:20px;
+    position:absolute;
+    left:780px;
+    top:680px;
+    color:white;}
+
+
+@media (min-width:320px) and (max-width:600px) {
+
+    #form{
+         height: 350px;
+         width: 300px;
+         background-color:#F0F0E1;
+         position: absolute;
+         top: 320px;
+         left: 70px;
+    }
+
+    .poppins{
+    position:relative;
+    top:180px;
+    left:80px;
+    font-size: 28px;
+
+    }
+
+    .para{
+    position:relative;
+    top:180px;
+    left:80px;
+    font-size:small;
+    }
+
+    .main_input{
+    width:250px;
+    }
+
+    .login{
+    margin-left:20px;
+    }
+
+    .bottom_para{
+
+    font-size:small;
+    position:absolute;
+    left:80px;
+    bottom:265px;
+    color:white;
+
+
+
+
+
+    }
+
+
+
+}

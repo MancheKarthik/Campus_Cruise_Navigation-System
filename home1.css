@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    background-color: #222831;
+}
+
+.top_nav {
+    border: none;
+    background-color: none;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+}
+
+.back_img {
+    height: 50px;
+}
+
+.bottom_nav {
+    height: 85px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: none;
+    border: none;
+}
+
+.navbar {
+    height: 60px;
+    width: 400px;
+    left: 18px;
+    border-radius: 50px;
+    background-color: #F0F0E1;
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 1;
+    box-shadow: 3px 3px black;
+}
+
+.elements_navbar {
+    height: 20px;
+}
+
+.section1 {
+    border: none;
+    width: 380px;
+    margin: auto;
+    position: absolute;
+    top: 120px;
+}
+
+.container_one {
+    height: auto;
+    width: 380px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+.image_input {
+    display: flex;
+    background-color: #F0F0E1;
+    box-shadow: 3px 3px black;
+    position: relative;
+    box-sizing: border-box;
+    height: 60px;
+    border-radius: 20px;
+    margin-left: 13px;
+    margin-bottom: 20px;
+    width: 400px;
+}
+
+.input_tag {
+    height: 50px;
+    width: 250px;
+    background-color: #F0F0E1;
+    border-radius: 20px;
+    outline: none;
+    font-size: 20px;
+    border: none;
+}
+
+#find-path {
+height:100px;
+width200px;
+     /* Ensure the button shows a pointer cursor */
+}
+
+.image-container {
+    width: 375px; /* Adjust to fit your image */
+    height: 375px; /* Adjust to fit your image */
+    overflow: hidden;
+    position: relative;
+    touch-action: none; /* Prevent default touch actions */
+    border: 1px solid #333;
+    border-radius: 20px;
+
+}
+
+.bottom_para {
+    color: white;
+    font-size: 14px;
+    margin-left: 35px;
+    margin-top: 10px;
+}

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- <nav class="top_nav"> -->
+
+    
+    <!-- <a href="Maps.html"><img class="Maps_icon" src="Map.png"></a> -->
+
+</nav>
+
+<div class="bottom_nav">
+    <nav class="navbar">
+        <a href="home.html"><img class="elements_navbar" src="explore_24dp_black.png"></a>
+        <a href="libraryMAIN.html"><img class="elements_navbar" src="library_books_24dp_666666.png"></a>
+        <a href="contactusMAIN.html"><img class="elements_navbar" src="email_24dp_666666.png"></a>
+        <a href="AboutsusMAIN.html"><img class="elements_navbar" src="account_balance_24dp_666666.png"></a>
+        <a href="Maps.html"><img class="elements_navbar" src="map_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+        <a href="register.php"><img class="elements_navbar" src="logout_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+    </nav>
+</div>
+
+<section class="section1">
+    <div class="container_one">
+        <div class="image_input">
+            <div class="image">
+                <img style="height:30px;" src="my_location_24dp_000000.png">
+            </div>
+            <input id="from-block" class="input_tag" type="text" placeholder="Where are you?" list="location-options">
+            <datalist id="location-options">
+                <option value="Staircase"></option>
+               
+
+            </datalist>
+        </div>
+        <div class="image_input">
+            <div class="image">
+                <img src="place_24dp.png">
+            </div>
+            <input id="to-block" class="input_tag" type="text" placeholder="Where you want to go" list="locations">
+        </div>
+    </div>
+    <datalist id="locations">
+        <option value="Main gate">
+        <option value="S-101">
+        <option value="S-102">
+        <option value="S-103">
+        <option value="S-104">
+        <option value="S-105">
+        <option value="S-106">
+        <option value="S-107">
+        <option value="S-108">
+        <option value="S-109">
+        <option value="S-110">
+        <option value="S-111">
+        <option value="S-112">
+        <option value="S-113">
+        <option value="R-101">
+        <option value="R-102">
+        <option value="R-103">
+        <option value="R-104">
+        <option value="R-105">
+        <option value="L-101">
+        <option value="L-102">
+        <option value="O-101">
+        <option value="O-102">
+        <option value="O-103">
+        <option value="O-104">
+        <option value="T-001">
+        <option value="P-103">
+        <option value="P-104">
+        <option value="P-105">
+        <option value="J-101">
+        <option value="J-102">
+        <option value="J-103">
+        <option value="J-104">
+        <option value="J-105">
+        <option value="Toilet">
+        <option value="Workshop">
+        <option value="Court">
+        <option value="Playground">
+        <option value="Parking">
+        <option value="Architecture building">
+        <option value="Reception">
+        <option value="Canteen">
+    </datalist>
+
+    <div class="image-container">
+        <canvas id="layoutCanvas" width="600" height="400"></canvas>
+    </div>
+    <p  class="bottom_para">Copyright © CAMPUS CRUISE | All rights reserved</p>
+    <p  class="bottom_para1">You're at first floor
+    </p>
+
+   <div style="display:flex; justify-content:space-evenly; height:100px; width:300px;">
+    <button style="height:60px;width:120px ;position:relative;left:680px;font-size: 20px;" id="find-path">Find Path</button>
+    <a href="home_second_floor.html" id="next"  >Next floor</a>
+    </div>
+</section>
+
+<script>
+    try {
+        const blockCoordinates = {
+            "Main gate": { x: 15, y: 305 },
+            "S-101": { x: 70, y: 245 },
+            "S-102": { x: 70, y: 220 },
+            "S-103": { x: 70, y: 130 },
+            "S-104": { x: 70, y: 100 },
+            "S-105": { x: 120, y: 95 },
+            "S-106": { x: 120, y: 100 },
+            "S-107": { x: 120, y: 130 },
+            "S-108": { x: 120, y: 146 },
+            "S-109": { x: 120, y: 165 },
+            "S-110": { x: 120, y: 200 },
+            "S-111": { x: 120, y: 240 },
+            "S-112": { x: 120, y: 260 },
+            "S-113": { x: 120, y: 270 },
+            "Toilet":{x:120,y:275},
+            "R-101": { x: 130, y: 45 },
+            "R-102": { x: 165, y: 45 },
+            "R-103": { x: 225, y: 45 },
+            "R-104": { x: 245, y: 45 },
+            "R-105": { x: 265, y: 45 },
+            "L-101": { x: 320, y: 40 },
+            "L-102": { x: 360, y: 105 },
+            "O-101": { x: 365, y: 153 },
+            "O-102": { x: 355, y: 153 },
+            "O-103": { x: 320, y: 153 },
+            "O-104": { x: 320, y: 193 },
+            "P-103": { x: 365, y: 260 },
+            "P-104": { x: 365, y: 315 },
+            "P-106": { x: 355, y: 315 },
+            "J-101": { x: 390, y: 340 },
+            "J-102": { x: 440, y: 340 },
+            "J-103": { x: 550, y: 340 },
+            "J-104": { x: 520, y: 340 },
+            "J-105": { x: 520, y: 340 },
+            "T-101": { x: 100, y: 250 },
+            "P-102": { x: 200, y: 250 },
+            "J-001": { x: 230, y: 280 },
+            
+            "Staircase":{x:60 ,y: 315},
+            
+            "Architecture building":{x:500,y:185},
+            
+        };
+
+        const canvas = document.getElementById('layoutCanvas');
+    const ctx = canvas.getContext('2d');
+    const image = new Image();
+    image.src = 'firstfloor.jpg';  // Ensure this is a high-res image
+
+
+        let imageLoaded = false;
+
+        image.onload = () => {
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            imageLoaded = true;
+        };
+
+        function findPath() {
+            const fromBlock = document.getElementById('from-block').value;
+            const toBlock = document.getElementById('to-block').value;
+
+            if (!blockCoordinates[fromBlock] || !blockCoordinates[toBlock]) {
+                alert('Please enter valid block names.');
+                return;
+            }
+
+            if (imageLoaded) {
+                drawPathWithWaypoints(fromBlock, toBlock);
+            } else {
+                console.log('Image is still loading. Please wait.');
+            }
+
+            findPathButton.classList.add('active');
+            setTimeout(() => {
+                findPathButton.classList.remove('active');
+            }, 300);
+        }
+
+        const findPathButton = document.getElementById('find-path');
+        findPathButton.addEventListener('click', findPath);
+        findPathButton.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            findPath();
+        });
+
+        function drawPathWithWaypoints(fromBlock, toBlock) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            const start = blockCoordinates[fromBlock];
+            const end = blockCoordinates[toBlock];
+
+            const waypoints = {
+               
+                 "Staircase to S-101": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 245 },
+                    end
+                ],
+                "Staircase to S-102": [
+                start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 220 },
+                    end],
+
+                    "Staircase to S-103": [
+                start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 130 },
+                    end],
+           
+                "Staircase to S-104": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 100 },
+                    end
+                ],
+                "Staircase to S-105": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 90 },
+                    end
+                ],
+                 "Staircase to S-106": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 100 },
+                    end
+                ],
+                "Staircase to S-107": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 130 },
+                    end
+                ],
+                "Staircase to S-108": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 146 },
+                    end
+                ],
+                "Staircase to S-109": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 165 },
+                    end
+                ],
+                "Staircase to S-110": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 200},
+                    end
+                ],
+                 "Staircase to S-111": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 240 },
+                    end
+                ],
+                 "Staircase to S-112": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 260 },
+                    end
+                ],
+                "Staircase to S-113": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 270 },
+                    end
+                ],
+                "Staircase to Toilet": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 275 },
+                    end
+                ],
+                "Staircase to R-101": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77 },
+                    { x: 130, y: 77},
+                    end
+                ],
+                "Staircase to R-102": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77 },
+                    { x: 165, y: 77},
+                    end
+                ],
+                "Staircase to R-103": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y:77 },
+                    { x: 225, y:77},
+                    end
+                ],
+                "Staircase to R-104": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y:77 },
+                    { x: 245, y:77},
+                    end
+                ],
+                "Staircase to R-105": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    end
+                ],
+               "Staircase to L-101": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    end
+                ],
+
+                "Staircase to L-102": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:105},
+                    
+                    end
+                ],
+
+                "Staircase to O-101": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:153},
+                    
+                    end
+                ],
+
+                "Staircase to O-102": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:153},
+                    
+                    end
+                ],
+
+                "Staircase to O-103": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:153},
+                    
+                    end
+                ],
+
+                "Staircase to O-104": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:193},
+                    
+                    end
+                ],
+
+                "Staircase to P-103": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:260},
+                    
+                    end
+                ],
+
+                "Staircase to P-104": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:315},
+                    
+                    end
+                ],
+
+                "Staircase to P-106": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:315},
+                    
+                    end
+                ],
+
+                "Staircase to J-101": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:340},
+                    
+                    end
+                ],
+
+                "Staircase to J-102": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:342},
+                    { x: 440, y:342},
+                    
+                    end
+                ],
+
+                
+                "Staircase to J-103": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:342},
+                    { x: 480, y:342},
+                    
+                    end
+                ],
+
+                "Staircase to J-104": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:342},
+                    { x: 520, y:342},
+                    
+                    end
+                ],
+
+                "Staircase to J-105": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:342},
+                    { x: 520, y:342},
+                    
+                    end
+                ],
+
+                
+                 
+                "Staircase to T-001": [
+                    start,
+                    { x: 100, y: 305 },
+                    end
+                ],
+                "Staircase to Architecture building": [
+                    start,
+                    { x: 100, y: 315 },
+                    { x: 100, y: 77},
+                    { x: 265, y:77},
+                    { x: 310, y:65},
+                    { x: 390, y:65},
+                    { x: 390, y:185},
+                    
+                    end
+                ],
+
+
+
+
+               
+
+
+                // Add more waypoints here...
+            };
+
+            let selectedPath = waypoints[`${fromBlock} to ${toBlock}`];
+
+            if (!selectedPath) {
+                selectedPath = [start, end];
+            }
+
+            animateMovingDottedLine(selectedPath);
+        }
+
+        function animateMovingDottedLine(path) {
+            let dashOffset = 0;
+            const dashLength = 10; // Length of dashes
+            const dashGap = 5; // Gap between dashes
+            const animationSpeed = 0.3; // Speed of the movement
+
+            function drawDottedLine() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                ctx.setLineDash([dashLength, dashGap]);
+                ctx.lineDashOffset = dashOffset;
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+
+                ctx.moveTo(path[0].x, path[0].y);
+
+                for (let i = 1; i < path.length; i++) {
+                    const curr = path[i];
+                    ctx.lineTo(curr.x, curr.y);
+                }
+
+                ctx.stroke();
+
+                dashOffset -= animationSpeed;
+                requestAnimationFrame(drawDottedLine);
+            }
+
+            drawDottedLine();
+        }
+    } catch (e) {
+        alert("JavaScript error: " + e.message);
+    }
+</script>
+
+<style>
+    button {
+        background-color: #f0f0e1;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left:30px;
+        margin-top:50px;
+    }
+
+    button.active {
+        background-color: yellow;
+    }
+</style>
+
+</body>
+</html>

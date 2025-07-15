@@ -1,0 +1,130 @@
+
+
+html,body{
+width:100%;
+background-color:#222831;
+
+}
+
+
+
+/* Container for the image */
+.image-container {
+    position: relative;
+    top:80px;
+    width: 850px;
+    height: 550px;
+    margin-left:510px;
+    overflow: hidden; /* Hide overflow to ensure the image stays within the container */
+    border: 2px solid #ddd;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the images inside the container */
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure the image scales down properly without distortion */
+    transform: scale(1); /* Set the initial scale of the image to 1 (fully zoomed out) */
+    transition: transform 0.3s ease; /* Smooth transition when zooming */
+    border-radius: 10px;
+    cursor: grab; /* Show grab cursor when user hovers over the image */
+}
+
+/* Styling for zoom buttons */
+.zoom-button {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Specific positioning for zoom-in and zoom-out buttons */
+#zoom-in-1, #zoom-in-2, #zoom-in-3, #zoom-in-4, #zoom-in-5, #zoom-in-6, #zoom-in-7, #zoom-in-8 {
+    left: 10px;
+}
+
+#zoom-out-1, #zoom-out-2, #zoom-out-3, #zoom-out-4, #zoom-out-5, #zoom-out-6, #zoom-out-7, #zoom-out-8 {
+    right: 10px;
+}
+
+/* Hover effect for zoom buttons */
+.zoom-button:hover {
+    background-color: #eee;
+    transform: scale(1.1);
+}
+
+/* Additional hover effect for the image */
+.image-container img:hover {
+    cursor: grab;
+}
+
+/* To keep the image responsive and zoomable */
+.image-container img {
+    transform-origin: center center; /* Zoom from the center */
+    transform: scale(1); /* Start fully zoomed out */
+}
+
+
+
+.bottom_nav{
+height:85px;
+width:100%;
+position:fixed;
+bottom:0px;
+border:none;
+z-index:1;
+}
+
+.navbar{
+    height:80px;
+    width: 1680px;;
+    left:180px;
+    border-radius:50px;
+    background-color:#F0F0E1;
+    position:fixed;
+    top:0px;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    z-index:1;
+     box-shadow:3px 3px black;
+    
+    }
+
+.top_nav{
+height:60px;
+width:100%;
+position:fixed;
+z-index:3;
+margin-bottom:10px;
+border:none;
+background-color:#222831;
+}
+
+.elements_navbar{
+height:50px;
+}
+
+.floor_name{
+height:50px;
+width:200px;
+color:white;
+border:none;
+position:relative;
+left:850px;
+top:80px;
+font-size: 20px;
+}

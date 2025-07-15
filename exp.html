@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+</head>
+<body>
+
+<nav class="top_nav">
+
+    <a href="login.html"><img class="back_img" src="arrow_back_24dp_white.png"></a>
+    <a href="Maps.html"><img class="Maps_icon" src="Map.png"></a>
+
+</nav>
+
+<div class="bottom_nav">
+    <nav class="navbar">
+        <a href="home.html"><img class="elements_navbar" src="explore_24dp_black.png"></a>
+        <a href="libraryMAIN.html"><img class="elements_navbar" src="library_books_24dp_666666.png"></a>
+        <a href="contactusMAIN.html"><img class="elements_navbar" src="email_24dp_666666.png"></a>
+        <a href="AboutsusMAIN.html"><img class="elements_navbar" src="account_balance_24dp_666666.png"></a>
+    </nav>
+</div>
+
+<section class="section1">
+    <div class="container_one">
+        <div class="image_input">
+            <div class="image">
+                <img style="height:30px;" src="my_location_24dp_000000.png">
+            </div>
+            <input id="from-block" class="input_tag" type="text" placeholder="Where are you?...🤔">
+        </div>
+        <div class="image_input">
+            <div class="image">
+                <img src="place_24dp.png">
+            </div>
+            <input id="to-block" class="input_tag" type="text" placeholder="Where you want to go...🤨">
+        </div>
+
+    </div>
+
+    <div class="image-container">
+        <canvas id="layoutCanvas" width="400" height="375"></canvas>
+    </div>
+    <p  class="bottom_para">Copyright © CAMPUS CRUISE | All rights reserved</p>
+
+    </div>
+    <button style="heght:50px;width:100px ;position:relative;left:110px;" id="find-path">Find Path</button>
+    </div>
+</section>
+
+<script>
+    try {
+        // Coordinates of blocks in the map
+        const blockCoordinates = {
+            "Main Gate": { x: 50, y: 700 },
+            "Canteen": { x: 850, y: 150 },
+            "S-010": { x: 300, y: 650 },
+            "Workshop": { x: 300, y: 300 }
+        };
+
+        // Canvas setup
+        const canvas = document.getElementById('layoutCanvas');
+        const ctx = canvas.getContext('2d');
+        const image = new Image();
+        image.src = 'map_grounf_floor.png'; // Ensure this image is in the correct path
+
+        let imageLoaded = false;
+
+        image.onload = () => {
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            imageLoaded = true;
+        };
+
+        // Function to handle path finding
+        function findPath() {
+            const fromBlock = document.getElementById('from-block').value;
+            const toBlock = document.getElementById('to-block').value;
+
+            if (!blockCoordinates[fromBlock] || !blockCoordinates[toBlock]) {
+                alert('Please enter valid block names.');
+                return;
+            }
+
+            if (imageLoaded) {
+                drawPathWithWaypoints(fromBlock, toBlock);
+            } else {
+                console.log('Image is still loading. Please wait.');
+            }
+
+            // Change button color to yellow
+            findPathButton.classList.add('active');
+            setTimeout(() => {
+                findPathButton.classList.remove('active');
+            }, 300); // Change back to original color after 300ms
+        }
+
+        // Find path button click and touch event listeners
+        const findPathButton = document.getElementById('find-path');
+        findPathButton.addEventListener('click', findPath);
+        findPathButton.addEventListener('touchstart', (event) => {
+            event.preventDefault(); // Prevents mouse click event from firing
+            findPath();
+        });
+
+        // Function to draw the path with waypoints
+        function drawPathWithWaypoints(fromBlock, toBlock) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            const start = blockCoordinates[fromBlock];
+            const end = blockCoordinates[toBlock];
+
+            // Define waypoints for different paths
+            const waypoints = {
+                "Main Gate to Canteen": [
+                    start,
+                    { x: 150, y: 700 },
+                    { x: 150, y: 500 },
+                    { x: 400, y: 500 },
+                    { x: 400, y: 300 },
+                    { x: 700, y: 300 },
+                    end
+                ],
+                "Main Gate to S-010": [
+                    start,
+                    { x: 100, y: 700 },
+                    { x: 300, y: 650 },
+                    end
+                ],
+                "Main Gate to Workshop": [
+                    start,
+                    { x: 200, y: 300 },
+                    { x: 30, y: 300 },
+                    end
+                ]
+            };
+
+            let selectedPath = waypoints[`${fromBlock} to ${toBlock}`];
+
+            // If no specific path exists, default to straight line
+            if (!selectedPath) {
+                selectedPath = [start, end];
+            }
+
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y); // Start at the 'from' block
+
+            // Draw the lines between waypoints
+            for (let i = 1; i < selectedPath.length; i++) {
+                ctx.lineTo(selectedPath[i].x, selectedPath[i].y); // Draw line to each waypoint
+            }
+
+            ctx.stroke();
+        }
+    } catch (e) {
+        alert("JavaScript error: " + e.message);
+    }
+</script>
+
+<style>
+    /* Add this CSS to style the active button state */
+    button {
+        background-color: #f0f0e1; /* Original color */
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left:30px;
+        margin-top:50px;
+    }
+
+    button.active {
+        background-color: yellow; /* Color when clicked */
+    }
+</style>
+
+</body>
+</html>

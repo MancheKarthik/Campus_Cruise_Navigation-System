@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contactusMAIN.css">
+</head>
+
+<body>
+
+<div class="bottom_nav">
+    <nav class="navbar">
+        <a href="home.html"><img class="elements_navbar" src="explore_24dp_666666.png"></a>
+        <a href="libraryMAIN.html"><img class="elements_navbar" src="library_books_24dp_666666.png"></a>
+        <a href="contactusMAIN.html"><img class="elements_navbar" src="email_24dp_black.png"></a>
+        <a href="AboutsusMAIN.html"><img class="elements_navbar" src="account_balance_24dp_666666.png"></a>
+        <a href="Maps.html"><img class="elements_navbar" src="map_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+        <a href="register.php"><img class="elements_navbar" src="logout_24dp_666666_FILL0_wght400_GRAD0_opsz24.png"></a>
+    </nav>
+</div>
+
+<section>
+    <p id="para">Get in Touch with Us!<br> We'd Love to Hear from You.</p>
+
+    <div class="container">
+        <form id="contactForm" method="POST" action="submitContact.php">
+            <input id="name" name="name" placeholder="Enter your name" required><br>
+            <input id="email" name="email" placeholder="Enter your email" required><br>
+            <input id="stream" name="stream" placeholder="Enter your stream and class" required><br>
+            <input id="phone" name="phone" placeholder="Enter your phone number" required><br>
+            <textarea id="suggestions" name="suggestions" style="height:100px;width:450px;margin-top:30px;background-color:#F0F0E1;padding:20px;border-radius:20px;font-size: 20px;" placeholder="Drop us your suggestions" required></textarea><br><br>
+            <button type="submit" id="submitBtn" style="text-decoration: none; padding: 10px 20px; background-color: #FFCB00;color:black;border-radius:30px;box-shadow:2px 2px 2px black;margin-top:10px;margin-left:70px;border-radius:15px;border:1px solid black;font-size:20px;width: 120px ;">Submit</button>
+           <!-- Ensure the 'View Messages' button points to the PHP page where messages are fetched -->
+<a href="viewMessages.php" id="viewMessagesButton" style="margin-top:20px;margin-left:30px;font-size:20px;color: black;text-decoration: none;border-radius: 10px; background-color: #FFCB00;padding: 10px;box-shadow: 2px 2px 2px black;border: 1px solid;">View Messages</a>
+
+        </form>
+    </div>
+
+    <div id="responseMessage" style="color:#FFCB00 ; margin-top: 10px;margin-left:680px;font-size: 18px;"></div>
+
+    <p class="bottom_para">Copyright © CAMPUS CRUISE | All rights reserved</p>
+</section>
+
+<script>
+    document.getElementById("viewMessagesButton").addEventListener("click", function() {
+        window.location.href = "messages.html";
+    });
+</script>
+
+</body>
+</html>

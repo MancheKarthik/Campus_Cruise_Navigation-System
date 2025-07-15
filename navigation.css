@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Adjusted navigation image size and position */
+.navigation {
+    height: 500px; /* Increased height */
+    width: 500px; /* Increased width */
+    position: absolute;
+    top: 130px;
+    left: 700px;
+}
+
+/* Updated heading position for laptop layout */
+.para {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4.5rem; /* Increased font size */
+    position: absolute;
+    top: 600px;
+    left: 800px;
+}
+
+/* Adjusted paragraph positions and font sizes */
+.para2 {
+    font-size: 2.5rem; /* Larger font size */
+    position: absolute;
+    top: 680px;
+    left: 570px;
+}
+
+.para3 {
+    font-size: 2.5rem; /* Larger font size */
+    position: absolute;
+    top: 725px;
+    left: 650px;
+}
+
+/* Adjusted Skip link position */
+a[href="contactus.html"] {
+    color: black;
+    position: absolute;
+    left: 100px;
+    top: 80px;
+    text-decoration: none;
+    font-size: 24px; /* Increased font size */
+}
+
+/* Updated button styling and alignment */
+.button {
+    border: 1px solid white;
+    height: 60px;
+    width: 100px;
+    position: absolute;
+    top: 100px;
+    left: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adjusted forward icon dimensions */
+.forward {
+    height: 80px;
+    width: 80px;
+    position:absolute;
+    left:700px;
+    top:0px;
+}

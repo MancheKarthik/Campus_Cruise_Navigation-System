@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.image-container {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    touch-action: none; /* Prevent default touch actions */
+    border: 1px solid #333;
+}
+
+#zoomable-image {
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    transform: scale(1) translate(0, 0);
+    transform-origin: 0 0;
+}
+
+.zoom-button {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+#zoom-in {
+    top: 10px;
+    right: 10px;
+     height:50px;
+     width:50px;
+     font-size:16px;
+}
+
+#zoom-out {
+
+    top: 50px;
+    right: 10px;
+    height:50px;
+    width:50px;
+    font-size:16px;
+}
