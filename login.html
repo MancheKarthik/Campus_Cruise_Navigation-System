@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+<main>
+  <section>
+    <h1 class="poppins">Let's join the <br> PCE Community</h1>
+    <p class="para">If you're currently pursuing your degree at PCE, then <br>
+      don't forget to use your PCE email address</p>
+
+    <form id="loginForm" method="POST" action="#">
+      <div class="main_input">
+        <img src="user-fill.png" alt="">
+        <input id="email" name="email" class="input" type="text" placeholder="Email" required><br>
+      </div>
+
+      <div class="main_input">
+        <img class="key_image" src="key-fill.png" alt="">
+        <input id="password" name="passwd" class="input" type="password" placeholder="Password" required><br>
+      </div>
+
+      <button id="loginButton" type="submit" style="margin-left:115px;" class="login">Login</button>
+      <div id="message" style="color: red; margin-top: 10px;margin-left:30px;"></div>
+    </form>
+
+    <p class="bottom_para">Copyright © CAMPUS CRUISE | All rights reserved</p>
+  </section>
+</main>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const messageElement = document.getElementById('message');
+
+    messageElement.innerText = 'Logging in...';
+
+    try {
+      const res = await fetch('/.netlify/functions/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        messageElement.style.color = 'green';
+        messageElement.innerText = "Login Successful!";
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 1500);
+      } else {
+        messageElement.style.color = 'red';
+        messageElement.innerText = data.message || "Login failed.";
+      }
+    } catch (err) {
+      messageElement.style.color = 'red';
+      messageElement.innerText = "Server error. Please try again.";
+    }
+  });
+</script>
+
+</body>
+</html>
